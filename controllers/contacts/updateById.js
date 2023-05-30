@@ -9,9 +9,11 @@ const updateById = async (req, res) => {
     throw HttpError(400, error.message);
   }
   const { id } = req.params;
-  const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
+  const result = await Contact.findByIdAndUpdate(id, req.body, {
+    new: true,
+  }).populate("owner", "email");
   if (!result) {
-    throw HttpError(404, "Not found");
+    throw HttpError(404);
   }
   res.json(result);
 };
