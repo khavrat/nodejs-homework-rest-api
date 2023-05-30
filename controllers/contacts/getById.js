@@ -3,9 +3,9 @@ const { HttpError, ctrlWrapper } = require("../../helpers");
 
 const getById = async (req, res) => {
   const { id } = req.params;
-  const result = await Contact.findById(id);
+  const result = await Contact.findById(id).populate("owner", "email");
   if (!result) {
-    throw HttpError(404, "Not found");
+    throw HttpError(404);
   }
   res.json(result);
 };

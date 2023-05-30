@@ -4,14 +4,18 @@ const { HttpError, ctrlWrapper } = require("../../helpers");
 const { schemas } = require("../../models/contact");
 
 const add = async (req, res) => {
+  //идентификация юзера кот может положить клнтакты
+  const { _id: owner } = req.user;
   const { error } = schemas.addSchema.validate(req.body);
   if (error) {
     throw HttpError(400, error.message);
   }
-  const result = await Contact.create(req.body);
+  //и сюда добавим
+  const contact = await Contact.create({ ...req.body, owner });
+  const result = contact.populate("owner", "email");
   res.status(201).json(result);
 };
 
 module.exports = {
-    add: ctrlWrapper(add),
-}
+  add: ctrlWrapper(add),
+};
