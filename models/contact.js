@@ -30,9 +30,6 @@ const addSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string(),
   phone: Joi.string(),
-  // .min(10)
-  // .pattern(/^[0-9\s-()+]+$/)
-  // .required(),
   favorite: {
     type: Joi.boolean(),
   },
