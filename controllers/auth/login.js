@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { User, schemas } = require("../../models/user");
+const { User } = require("../../models/user");
 
 const { HttpError, ctrlWrapper } = require("../../helpers");
 
@@ -9,11 +9,6 @@ const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const { error } = schemas.loginSchema.validate(req.body);
-
-  if (error) {
-    throw HttpError(400, error.message);
-  }
 
   const user = await User.findOne({ email });
   if (!user) {

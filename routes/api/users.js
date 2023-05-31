@@ -2,12 +2,14 @@ const express = require("express");
 
 const ctrl = require("../../controllers/users");
 
-const { isValidId } = require("../../middlewares");
+const { validateBody, isValidId } = require("../../middlewares");
+
+const schemas = require('../../models/user')
 
 const router = express.Router();
 
 router.get("/", ctrl.getAllUsers);
 
-router.patch("/:id", isValidId, ctrl.updateSubscription);
+router.patch("/:id", validateBody(schemas.schemas.updateSubscriptionSchema), isValidId, ctrl.updateSubscription);
 
 module.exports = router;

@@ -2,13 +2,19 @@ const express = require("express");
 
 const ctrl = require("../../controllers/auth");
 
-const { authenticate } = require("../../middlewares");
+const { authenticate, validateBody} = require("../../middlewares");
+
+const schemas = require("../../models/user");
 
 const router = express.Router();
 
-router.post("/register", ctrl.register);
+router.post(
+  "/register",
+  validateBody(schemas.schemas.registerSchema),
+  ctrl.register
+);
 
-router.post("/login", ctrl.login);
+router.post("/login", validateBody(schemas.schemas.loginSchema), ctrl.login);
 
 router.get("/current", authenticate, ctrl.getCurrent);
 
