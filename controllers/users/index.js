@@ -1,11 +1,8 @@
-const register = require("./register");
-const login = require("./login");
-const logout = require("./logout");
-const getCurrent = require("./getCurrent");
+const getAllUsers = require("./getAllUsers");
+const updateSubscription = require("./updateSubscription");
+
 
 module.exports = {
-  register: register.register,
-  login: login.login,
-  logout: logout.logout,
-  getCurrent: getCurrent.getCurrent,
+  getAllUsers: getAllUsers.getAllUsers,
+  updateSubscription: updateSubscription.updateSubscription,
 };
