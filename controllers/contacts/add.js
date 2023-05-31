@@ -12,8 +12,7 @@ const add = async (req, res) => {
   }
   //и сюда добавим
   const contact = await Contact.create({ ...req.body, owner });
-  const result = contact.populate("owner", "email");
-  res.status(201).json(result);
+  res.status(201).json(contact);
 };
 
 module.exports = {

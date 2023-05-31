@@ -1,17 +1,13 @@
-const express = require('express');
+const express = require("express");
 
-const ctrl = require('../../controllers/users');
+const ctrl = require("../../controllers/users");
 
-const { authenticate } = require("../../middlewares");
+const { isValidId } = require("../../middlewares");
 
 const router = express.Router();
 
-router.post("/register", ctrl.register);
+router.get("/", ctrl.getAllUsers);
 
-router.post("/login", ctrl.login);
-
-router.get("/current", authenticate, ctrl.getCurrent);
-
-router.post('/logout', authenticate, ctrl.logout)
+router.patch("/:id", isValidId, ctrl.updateSubscription);
 
 module.exports = router;
