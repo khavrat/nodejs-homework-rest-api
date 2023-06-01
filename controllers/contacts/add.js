@@ -1,17 +1,14 @@
 const { Contact } = require("../../models/contact");
-const { HttpError, ctrlWrapper } = require("../../helpers");
+const {ctrlWrapper } = require("../../helpers");
 
-const { schemas } = require("../../models/contact");
 
 const add = async (req, res) => {
-  const { error } = schemas.addSchema.validate(req.body);
-  if (error) {
-    throw HttpError(400, error.message);
-  }
-  const result = await Contact.create(req.body);
-  res.status(201).json(result);
+  const { _id: owner } = req.user;
+
+  const contact = await Contact.create({ ...req.body, owner });
+  res.status(201).json(contact);
 };
 
 module.exports = {
-    add: ctrlWrapper(add),
-}
+  add: ctrlWrapper(add),
+};
