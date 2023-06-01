@@ -12,4 +12,5 @@ router.get("/", ctrl.getAllUsers);
 
 router.patch("/:id", validateBody(schemas.schemas.updateSubscriptionSchema), isValidId, ctrl.updateSubscription);
 
+
 module.exports = router;
