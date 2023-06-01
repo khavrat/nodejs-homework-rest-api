@@ -5,7 +5,7 @@ const deleteById = async (req, res) => {
   const { id } = req.params;
   const result = await Contact.findByIdAndRemove(id);
   if (!result) {
-    throw HttpError(404, "Not found");
+    throw HttpError(404);
   }
   res.json({
     message: "Delete success",
@@ -13,5 +13,5 @@ const deleteById = async (req, res) => {
 };
 
 module.exports = {
-    deleteById: ctrlWrapper(deleteById),
-}
+  deleteById: ctrlWrapper(deleteById),
+};
