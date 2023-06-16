@@ -1,3 +1,7 @@
+## Link to deploy in Render.com [https://nodejs-homework-rest-api-82g8.onrender.com] 
+
+
+
 ## GoIT Node.js Course Template Homework
 
 Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
